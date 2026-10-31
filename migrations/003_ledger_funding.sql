@@ -1,0 +1,4 @@
+ALTER TABLE ledger_entries
+MODIFY COLUMN entry_type
+ENUM('DEBIT', 'CREDIT', 'FUNDING')
+NOT NULL;

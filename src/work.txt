@@ -1,0 +1,42 @@
+modules used(in-built) : fs / fs/promises, path, crypto, readline/promises
+modules used(external) : helmet, zod, argon2, jwt, 
+
+
+
+
+What I've verified so far
+Test	    Expected behavior	    Result
+-------------------------------------------------
+Test 1 — Successful transfer	Debit sender, credit recipient	PASS 
+Test 2 — Idempotency replay	    No duplicate transfer or debit	PASS
+Test 3 — Same key, different    amount	Reject with 409	PASS
+Test 4 — Insufficient funds	    Reject with 422	PASS (API verified)
+Test 5 — Wallet ownership	    Reject with 403	PASS
+
+
+
+
+
+Test 6 - Concurrent Transfer   : two requests arrive at nearly the same time and both try to spend the same wallet balance.
+
+
+Ab tak tumne kya test kiya?
+- Authentication aur validation tests
+- Successful wallet transfer
+- Idempotency replay
+- Same idempotency key ke saath different request
+- Insufficient balance
+- Sender wallet ownership
+- Concurrent transfer protection
+- Transaction rollback / atomicity
+
+
+Test 7: SQL failure ke baad transaction rollback.
+
+
+
+Test 8: Har completed transfer ke liye matching debit aur credit ledger entries.
+
+
+
+Test 9: Current wallet balances ledger history se match karte hain.
